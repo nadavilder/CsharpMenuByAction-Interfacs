@@ -6,21 +6,24 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItem
     {
-        public readonly List<MenuItem> r_Options = new List<MenuItem>();
+        public readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
         private readonly string r_Title;
         private int r_OptionNum;
+        private MenuItem m_parent;
         public event Action Selected;
 
-        public MenuItem(string i_Title, int i_OptionNum)
+        public MenuItem(string i_Title, int i_OptionNum, MenuItem i_Parent)
         {
             r_Title = i_Title;
             r_OptionNum = i_OptionNum;
+            m_parent = i_Parent;
+
         }
 
 
         public void AddOption(string i_Title)
         {
-            r_Options.Add(new MenuItem(i_Title, r_Options.Count + 1));
+            r_SubOptions.Add(new MenuItem(i_Title, r_SubOptions.Count + 1, this));
         }
 
         public void ShowOptions()
@@ -34,25 +37,36 @@ namespace Ex04.Menus.Delegates
                 Console.WriteLine(r_Title);
             }
             Console.WriteLine("===============");
-            foreach(MenuItem option in r_Options)
+            foreach(MenuItem option in r_SubOptions)
             {
                 Console.WriteLine($"{option.r_OptionNum}. {option.r_Title}");
             }
-            Console.WriteLine("0. Exit");
+            if(r_OptionNum == -1)
+            {
+                Console.WriteLine("0. Exit");
+            }
+            else
+            {
+                Console.WriteLine("0. Back");
+            }
         }
 
         public MenuItem SelectOption(int i_OptionNum)
         {
             
             MenuItem nextItem = this;
-            //If leaf // invoke on sub option
-            if(r_Options.Count == 0)
+            //If leaf
+            if(i_OptionNum == -1)
             {
-                this.OnSelected();
+                nextItem = m_parent;
+            }
+            else if(r_SubOptions[i_OptionNum].NumOfOptions == 0)
+            {
+                r_SubOptions[i_OptionNum].OnSelected();
             }
             else
             {
-                nextItem = r_Options[i_OptionNum];
+                nextItem = r_SubOptions[i_OptionNum];
             }
             return nextItem;
         }
@@ -63,7 +77,17 @@ namespace Ex04.Menus.Delegates
 
         public int NumOfOptions
         {
-            get { return r_Options.Count; }
+            get { return r_SubOptions.Count; }
+        }
+
+        public List<MenuItem> SubOptions
+        {
+            get { return r_SubOptions; }
+        }
+
+        public int OptionNum
+        {
+            get { return r_OptionNum; }
         }
 
 

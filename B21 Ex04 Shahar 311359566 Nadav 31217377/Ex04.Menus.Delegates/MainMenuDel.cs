@@ -5,25 +5,25 @@ namespace Ex04.Menus.Delegates
 {
     public class MainMenuDel
     {
-        public readonly MenuItem mainOptions;
+        public readonly MenuItem r_mainOptions;
         private readonly string r_Title;
 
         public MainMenuDel(string i_Title)
         {
             r_Title = i_Title;
-            mainOptions = new MenuItem(r_Title, -1);
+            r_mainOptions = new MenuItem(r_Title, -1, null);
         }
         
         public void AddOption(string i_Title)
         {
-            mainOptions.AddOption(i_Title);
+            r_mainOptions.AddOption(i_Title);
         }
 
 
         public void Show()
         {
             bool interactingWithMenu = true;
-            MenuItem curMenuItem = mainOptions;
+            MenuItem curMenuItem = r_mainOptions;
             while (interactingWithMenu)
             {
                 curMenuItem.ShowOptions();
@@ -32,19 +32,31 @@ namespace Ex04.Menus.Delegates
                 int selectedOption;
                 if(int.TryParse(selectedOptionString,out selectedOption))
                 {
-                    if(selectedOption == 0)
+                    if(selectedOption >= 0 && selectedOption <= curMenuItem.NumOfOptions)
                     {
-                        interactingWithMenu = false;
-                    } else if(selectedOption > 0 && selectedOption <= curMenuItem.NumOfOptions)
-                    {
+                        Console.Clear();
                         curMenuItem = curMenuItem.SelectOption(selectedOption-1);
+                        if(curMenuItem == null)
+                        {
+                            interactingWithMenu = false;
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Invalid input");
+                        Console.WriteLine("Invalid Option number");
                     }
                 }
+                else
+                {
+
+                    Console.WriteLine("Invalid Option number");
+                }
             }
+        }
+
+        public MenuItem MainOptions
+        {
+            get { return r_mainOptions; }
         }
 
     }
