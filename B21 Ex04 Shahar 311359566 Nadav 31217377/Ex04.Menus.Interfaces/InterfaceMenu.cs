@@ -23,7 +23,6 @@ namespace Ex04.Menus.Interfaces
             i_MenuItem.NotifyAllFunctions();
         }*/
 
-
         public void Show()
         {
             bool interactingWithMenu = true;
@@ -65,10 +64,7 @@ namespace Ex04.Menus.Interfaces
         public MenuItem MainOptions
         {
             get { return r_mainOptions; }
-        }
-
-        
-
+        }     
     }
 
 

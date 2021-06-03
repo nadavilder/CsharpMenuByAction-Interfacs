@@ -72,7 +72,6 @@ namespace Ex04.Menus.Interfaces
             m_MenuFunctions.Add(i_FunctionToADD);
         }
 
-
         public MenuItem SelectOption(int i_OptionNum)
         {
             MenuItem nextItem = this;
