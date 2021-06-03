@@ -28,7 +28,7 @@ namespace Ex04.Menus.Delegates
 
         public void ShowOptions()
         {
-            if(r_OptionNum!= -1)
+            if (r_OptionNum != -1)
             {
                 Console.WriteLine($"{r_OptionNum}. {r_Title}");
             }
@@ -37,11 +37,11 @@ namespace Ex04.Menus.Delegates
                 Console.WriteLine(r_Title);
             }
             Console.WriteLine("===============");
-            foreach(MenuItem option in r_SubOptions)
+            foreach (MenuItem option in r_SubOptions)
             {
                 Console.WriteLine($"{option.r_OptionNum}. {option.r_Title}");
             }
-            if(r_OptionNum == -1)
+            if (r_OptionNum == -1)
             {
                 Console.WriteLine("0. Exit");
             }
@@ -53,14 +53,14 @@ namespace Ex04.Menus.Delegates
 
         public MenuItem SelectOption(int i_OptionNum)
         {
-            
+
             MenuItem nextItem = this;
             //If leaf
-            if(i_OptionNum == -1)
+            if (i_OptionNum == -1)
             {
                 nextItem = m_parent;
             }
-            else if(r_SubOptions[i_OptionNum].NumOfOptions == 0)
+            else if (r_SubOptions[i_OptionNum].NumOfOptions == 0)
             {
                 r_SubOptions[i_OptionNum].OnSelected();
             }
