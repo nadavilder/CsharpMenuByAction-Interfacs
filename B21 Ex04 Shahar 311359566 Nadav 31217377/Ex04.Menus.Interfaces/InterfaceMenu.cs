@@ -4,7 +4,7 @@ namespace Ex04.Menus.Interfaces
 {
     public class InterfaceMenu : Function
     {
-        public readonly MenuItem r_mainOptions;
+        private readonly MenuItem r_mainOptions;
         private readonly string r_Title;
 
         public InterfaceMenu(string i_Title)

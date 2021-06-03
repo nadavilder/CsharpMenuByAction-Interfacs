@@ -6,7 +6,7 @@ namespace Ex04.Menus.Delegates
 {
     public class MenuItem
     {
-        public readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
+        private readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
         private readonly string r_Title;
         private int r_OptionNum;
         private MenuItem m_parent;
@@ -55,11 +55,12 @@ namespace Ex04.Menus.Delegates
         {
 
             MenuItem nextItem = this;
-            //If leaf
+            //If back
             if (i_OptionNum == -1)
             {
                 nextItem = m_parent;
             }
+            //If leaf
             else if (r_SubOptions[i_OptionNum].NumOfOptions == 0)
             {
                 r_SubOptions[i_OptionNum].OnSelected();

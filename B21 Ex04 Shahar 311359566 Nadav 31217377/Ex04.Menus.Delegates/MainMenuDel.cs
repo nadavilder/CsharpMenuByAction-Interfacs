@@ -5,7 +5,7 @@ namespace Ex04.Menus.Delegates
 {
     public class MainMenuDel
     {
-        public readonly MenuItem r_mainOptions;
+        private readonly MenuItem r_mainOptions;
         private readonly string r_Title;
 
         public MainMenuDel(string i_Title)

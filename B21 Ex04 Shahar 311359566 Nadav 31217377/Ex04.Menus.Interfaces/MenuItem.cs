@@ -13,7 +13,8 @@ namespace Ex04.Menus.Interfaces
         private readonly string r_Title;
         private int r_OptionNum;
         private MenuItem m_parent;
-        public readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
+        private readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
+        //Change to private and add property
         public List<Function> m_MenuFunctions = new List<Function>();
 
         public MenuItem(string i_Title)
@@ -66,29 +67,22 @@ namespace Ex04.Menus.Interfaces
                 Console.WriteLine("0. Back");
             }
         }
-        public void RemoveItem(MenuItem i_MenuToDel)
-        {
-            r_SubOptions.Remove(i_MenuToDel);
-        }
 
         public void AddFunctions(Function i_FunctionToADD)
         {
             m_MenuFunctions.Add(i_FunctionToADD);
         }
 
-        public void RemoveItem(Function i_FunctionToDel)
-        {
-            m_MenuFunctions.Remove(i_FunctionToDel);
-        }
 
         public MenuItem SelectOption(int i_OptionNum)
         {
             MenuItem nextItem = this;
-            //If leaf
+            //If back
             if (i_OptionNum == -1)
             {
                 nextItem = m_parent;
             }
+            //If leaf
             else if (r_SubOptions[i_OptionNum].NumOfOptions == 0)
             {
                 r_SubOptions[i_OptionNum].NotifyAllFunctions();
