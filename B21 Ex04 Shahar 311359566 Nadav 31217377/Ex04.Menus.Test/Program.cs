@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Ex04.Menus;
 
 
@@ -59,19 +60,22 @@ namespace Ex04.Menus.Test
 
         private static void CountSpace()
         {
-            Console.WriteLine("Count spaces logic");
+            Console.WriteLine("Please enter a sentence...");
+            string sentence = Console.ReadLine();
+            int countSpaces = sentence.Count(Char.IsWhiteSpace);
+            Console.WriteLine($"The number of Spaces is {countSpaces}");
             EndOfFunction();
         }
 
         private static void ShowTimes()
         {
-            Console.WriteLine("Current Time");
+            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
             EndOfFunction();
         }
 
         private static void ShowDates()
         {
-            Console.WriteLine("Current Date");
+            Console.WriteLine(DateTime.Now.ToString("d/M/yyyy"));
             EndOfFunction();
         }
 
@@ -82,14 +86,14 @@ namespace Ex04.Menus.Test
             Console.Clear();
         }
 
-        public struct ShowVersion : Interfaces.Function
+        public class ShowVersion : Interfaces.Function
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
                 ShowVersions();
             }
         }
-        public struct CountSpaces : Interfaces.Function
+        public class CountSpaces : Interfaces.Function
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
@@ -97,7 +101,7 @@ namespace Ex04.Menus.Test
             }
         }
 
-        public struct ShowTime : Interfaces.Function
+        public class ShowTime : Interfaces.Function
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
@@ -105,7 +109,7 @@ namespace Ex04.Menus.Test
             }
         }
 
-        public struct ShowDate : Interfaces.Function
+        public class ShowDate : Interfaces.Function
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {

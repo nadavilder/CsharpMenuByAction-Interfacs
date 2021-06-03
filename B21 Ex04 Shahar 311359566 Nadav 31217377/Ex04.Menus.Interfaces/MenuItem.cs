@@ -14,8 +14,7 @@ namespace Ex04.Menus.Interfaces
         private int r_OptionNum;
         private MenuItem m_parent;
         private readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
-        //Change to private and add property
-        public List<Function> m_MenuFunctions = new List<Function>();
+        private List<Function> m_MenuFunctions = new List<Function>();
 
         public MenuItem(string i_Title)
         {
@@ -104,10 +103,10 @@ namespace Ex04.Menus.Interfaces
             get { return r_SubOptions; }
         }
 
-        public int OptionNum
+      /*  public int OptionNum
         {
             get { return r_OptionNum; }
-        }
+        }*/
 
     }
 }

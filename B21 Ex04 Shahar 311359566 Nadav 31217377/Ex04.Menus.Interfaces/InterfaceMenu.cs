@@ -2,7 +2,7 @@
 
 namespace Ex04.Menus.Interfaces
 {
-    public class InterfaceMenu : Function
+    public class InterfaceMenu /*: Function*/
     {
         private readonly MenuItem r_mainOptions;
         private readonly string r_Title;
@@ -18,10 +18,10 @@ namespace Ex04.Menus.Interfaces
             r_mainOptions.AddOption(i_Title);
         }
 
-        public void FuncToRun(MenuItem i_MenuItem)
+        /*public void FuncToRun(MenuItem i_MenuItem)
         {
             i_MenuItem.NotifyAllFunctions();
-        }
+        }*/
 
 
         public void Show()
