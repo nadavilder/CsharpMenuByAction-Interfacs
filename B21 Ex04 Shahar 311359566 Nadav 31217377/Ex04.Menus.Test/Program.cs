@@ -10,16 +10,16 @@ namespace Ex04.Menus.Test
 
         static void Main(string[] args)
         {
-           Interfaces.InterfaceMenu mainMenuInterface = BuildinterfacesMenu();
+            Interfaces.MainMenu mainMenuInterface = BuildinterfacesMenu();
             mainMenuInterface.Show();
-            Delegates.MainMenuDel mainMenuDel = BuildDelegateMenu();
+            Delegates.MainMenu mainMenuDel = BuildDelegateMenu();
             mainMenuDel.Show();
         }
 
 
-        private static Interfaces.InterfaceMenu BuildinterfacesMenu()
+        private static Interfaces.MainMenu BuildinterfacesMenu()
         {
-            Interfaces.InterfaceMenu mainMenu = new Interfaces.InterfaceMenu("Main Menu");
+            Interfaces.MainMenu mainMenu = new Interfaces.MainMenu("Main Menu");
 
             mainMenu.AddOption("Version and Spaces");
             mainMenu.MainOptions.SubOptions[0].AddOption("Show Version");
@@ -34,9 +34,9 @@ namespace Ex04.Menus.Test
 
             return mainMenu;
         }
-        private static Delegates.MainMenuDel BuildDelegateMenu()
+        private static Delegates.MainMenu BuildDelegateMenu()
         {
-            Delegates.MainMenuDel mainMenu = new Delegates.MainMenuDel("Main Menu");
+            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Main Menu");
 
             mainMenu.AddOption("Version and Spaces");
             mainMenu.MainOptions.SubOptions[0].AddOption("Show Version");

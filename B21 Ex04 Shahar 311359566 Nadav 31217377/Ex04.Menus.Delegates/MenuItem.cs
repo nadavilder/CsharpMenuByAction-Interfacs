@@ -86,11 +86,5 @@ namespace Ex04.Menus.Delegates
             get { return r_SubOptions; }
         }
 
-        public int OptionNum
-        {
-            get { return r_OptionNum; }
-        }
-
-
     }
 }
