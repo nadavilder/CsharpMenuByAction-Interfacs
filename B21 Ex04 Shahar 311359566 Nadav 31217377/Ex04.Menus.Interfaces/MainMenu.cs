@@ -2,7 +2,7 @@
 
 namespace Ex04.Menus.Interfaces
 {
-    public class MainMenu /*: Function*/
+    public class MainMenu
     {
         private readonly MenuItem r_mainOptions;
         private readonly string r_Title;
@@ -17,11 +17,6 @@ namespace Ex04.Menus.Interfaces
         {
             r_mainOptions.AddOption(i_Title);
         }
-
-        /*public void FuncToRun(MenuItem i_MenuItem)
-        {
-            i_MenuItem.NotifyAllFunctions();
-        }*/
 
         public void Show()
         {
@@ -39,24 +34,20 @@ namespace Ex04.Menus.Interfaces
                     if (selectedOption >= 0 && selectedOption <= curMenuItem.NumOfOptions)
                     {
                         Console.Clear();
-                        curMenuItem = curMenuItem.SelectOption(selectedOption-1);
+                        curMenuItem = curMenuItem.SelectOption(selectedOption - 1);
                         if (curMenuItem == null)
                         {
                             interactingWithMenu = false;
                         }
-                       
                     }
                     else
                     {
-
                         Console.WriteLine("Invalid Option number");
                     }
                 }
-                  
                 else
                 {
-
-                    Console.WriteLine("Invalid Option number");
+                    Console.WriteLine("Invalid Input");
                 }
             }
         }
@@ -66,7 +57,4 @@ namespace Ex04.Menus.Interfaces
             get { return r_mainOptions; }
         }     
     }
-
-
 }
-

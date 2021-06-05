@@ -4,17 +4,18 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    public interface Function
+    public interface IFunction
     {
         void FuncToRun(MenuItem i_MenuItem);
     }
+
     public class MenuItem
     {
         private readonly string r_Title;
-        private int r_OptionNum;
-        private MenuItem m_parent;
+        private readonly int r_OptionNum;
         private readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
-        private List<Function> m_MenuFunctions = new List<Function>();
+        private MenuItem m_parent;
+        private List<IFunction> m_MenuFunctions = new List<IFunction>();
 
         public MenuItem(string i_Title)
         {
@@ -26,17 +27,17 @@ namespace Ex04.Menus.Interfaces
             r_Title = i_Title;
             r_OptionNum = i_OptionNum;
             m_parent = i_Parent;
-
         }
 
         public void NotifyAllFunctions()
         {
-            foreach (Function selected in m_MenuFunctions)
+            foreach (IFunction selected in m_MenuFunctions)
             {
                 selected.FuncToRun(this);
             }
         }
-       public void AddOption(string i_Title)
+
+        public void AddOption(string i_Title)
         {
             r_SubOptions.Add(new MenuItem(i_Title, r_SubOptions.Count + 1, this));
         }
@@ -51,6 +52,7 @@ namespace Ex04.Menus.Interfaces
             {
                 Console.WriteLine(r_Title);
             }
+
             Console.WriteLine("===============");
             foreach (MenuItem option in r_SubOptions)
             {
@@ -67,7 +69,7 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public void AddFunctions(Function i_FunctionToADD)
+        public void AddFunctions(IFunction i_FunctionToADD)
         {
             m_MenuFunctions.Add(i_FunctionToADD);
         }
@@ -75,12 +77,10 @@ namespace Ex04.Menus.Interfaces
         public MenuItem SelectOption(int i_OptionNum)
         {
             MenuItem nextItem = this;
-            //If back
             if (i_OptionNum == -1)
             {
                 nextItem = m_parent;
             }
-            //If leaf
             else if (r_SubOptions[i_OptionNum].NumOfOptions == 0)
             {
                 r_SubOptions[i_OptionNum].NotifyAllFunctions();
@@ -89,6 +89,7 @@ namespace Ex04.Menus.Interfaces
             {
                 nextItem = r_SubOptions[i_OptionNum];
             }
+
             return nextItem;
         }
 
@@ -101,11 +102,5 @@ namespace Ex04.Menus.Interfaces
         {
             get { return r_SubOptions; }
         }
-
-      /*  public int OptionNum
-        {
-            get { return r_OptionNum; }
-        }*/
-
     }
 }

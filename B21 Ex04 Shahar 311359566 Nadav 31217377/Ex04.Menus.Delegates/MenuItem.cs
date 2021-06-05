@@ -8,8 +8,9 @@ namespace Ex04.Menus.Delegates
     {
         private readonly List<MenuItem> r_SubOptions = new List<MenuItem>();
         private readonly string r_Title;
-        private int r_OptionNum;
+        private readonly int r_OptionNum;
         private MenuItem m_parent;
+        
         public event Action Selected;
 
         public MenuItem(string i_Title, int i_OptionNum, MenuItem i_Parent)
@@ -17,9 +18,7 @@ namespace Ex04.Menus.Delegates
             r_Title = i_Title;
             r_OptionNum = i_OptionNum;
             m_parent = i_Parent;
-
         }
-
 
         public void AddOption(string i_Title)
         {
@@ -36,11 +35,13 @@ namespace Ex04.Menus.Delegates
             {
                 Console.WriteLine(r_Title);
             }
+
             Console.WriteLine("===============");
             foreach (MenuItem option in r_SubOptions)
             {
                 Console.WriteLine($"{option.r_OptionNum}. {option.r_Title}");
             }
+
             if (r_OptionNum == -1)
             {
                 Console.WriteLine("0. Exit");
@@ -53,14 +54,11 @@ namespace Ex04.Menus.Delegates
 
         public MenuItem SelectOption(int i_OptionNum)
         {
-
             MenuItem nextItem = this;
-            //If back
             if (i_OptionNum == -1)
             {
                 nextItem = m_parent;
             }
-            //If leaf
             else if (r_SubOptions[i_OptionNum].NumOfOptions == 0)
             {
                 r_SubOptions[i_OptionNum].OnSelected();
@@ -69,8 +67,10 @@ namespace Ex04.Menus.Delegates
             {
                 nextItem = r_SubOptions[i_OptionNum];
             }
+
             return nextItem;
         }
+
         protected virtual void OnSelected()
         {
             Selected.Invoke();
@@ -85,6 +85,5 @@ namespace Ex04.Menus.Delegates
         {
             get { return r_SubOptions; }
         }
-
     }
 }

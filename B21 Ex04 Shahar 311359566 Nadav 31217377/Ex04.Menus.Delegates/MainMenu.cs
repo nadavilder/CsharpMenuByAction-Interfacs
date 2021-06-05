@@ -19,7 +19,6 @@ namespace Ex04.Menus.Delegates
             r_mainOptions.AddOption(i_Title);
         }
 
-
         public void Show()
         {
             bool interactingWithMenu = true;
@@ -48,8 +47,7 @@ namespace Ex04.Menus.Delegates
                 }
                 else
                 {
-
-                    Console.WriteLine("Invalid Option number");
+                    Console.WriteLine("Invalid Input");
                 }
             }
         }
@@ -58,6 +56,5 @@ namespace Ex04.Menus.Delegates
         {
             get { return r_mainOptions; }
         }
-
     }
 }

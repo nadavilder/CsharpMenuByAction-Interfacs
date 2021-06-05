@@ -2,20 +2,17 @@
 using System.Linq;
 using Ex04.Menus;
 
-
 namespace Ex04.Menus.Test
 {
-    class Program
+    public class Program
     {
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Interfaces.MainMenu mainMenuInterface = BuildinterfacesMenu();
             mainMenuInterface.Show();
             Delegates.MainMenu mainMenuDel = BuildDelegateMenu();
             mainMenuDel.Show();
         }
-
 
         private static Interfaces.MainMenu BuildinterfacesMenu()
         {
@@ -34,6 +31,7 @@ namespace Ex04.Menus.Test
 
             return mainMenu;
         }
+
         private static Delegates.MainMenu BuildDelegateMenu()
         {
             Delegates.MainMenu mainMenu = new Delegates.MainMenu("Main Menu");
@@ -62,7 +60,7 @@ namespace Ex04.Menus.Test
         {
             Console.WriteLine("Please enter a sentence...");
             string sentence = Console.ReadLine();
-            int countSpaces = sentence.Count(Char.IsWhiteSpace);
+            int countSpaces = sentence.Count(char.IsWhiteSpace);
             Console.WriteLine($"The number of Spaces is {countSpaces}");
             EndOfFunction();
         }
@@ -86,14 +84,15 @@ namespace Ex04.Menus.Test
             Console.Clear();
         }
 
-        public class ShowVersion : Interfaces.Function
+        public class ShowVersion : Interfaces.IFunction
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
                 ShowVersions();
             }
         }
-        public class CountSpaces : Interfaces.Function
+        
+        public class CountSpaces : Interfaces.IFunction
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
@@ -101,7 +100,7 @@ namespace Ex04.Menus.Test
             }
         }
 
-        public class ShowTime : Interfaces.Function
+        public class ShowTime : Interfaces.IFunction
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
@@ -109,17 +108,12 @@ namespace Ex04.Menus.Test
             }
         }
 
-        public class ShowDate : Interfaces.Function
+        public class ShowDate : Interfaces.IFunction
         {
             public void FuncToRun(Interfaces.MenuItem i_MenuItem)
             {
                 ShowDates();
             }
         }
-
-        
     }
 }
-
-
-
